@@ -8,6 +8,6 @@ import rva.model.TuristickaAgencija;
 
 public interface TuristickaAgencijaRepository extends JpaRepository<TuristickaAgencija, Long> {
 	
-	List<TuristickaAgencija> findByNazivLike(String naziv);
+	List<TuristickaAgencija> findByNazivContainingIgnoreCase(String naziv);
 
 }

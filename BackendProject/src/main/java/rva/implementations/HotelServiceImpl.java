@@ -49,12 +49,17 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public List<Hotel> getHotelsByNaziv(String naziv) {
-		return repo.findByNazivLike(naziv);
+		return repo.findByNazivContainingIgnoreCase(naziv);
 	}
 
 	@Override
 	public List<Hotel> getHotelsByDestinacija(Destinacija destinacija) {
 		return repo.findByDestinacija(destinacija);
+	}
+
+	@Override
+	public Optional<Hotel> findById(long id) {
+		return repo.findById(id);
 	}
 
 }

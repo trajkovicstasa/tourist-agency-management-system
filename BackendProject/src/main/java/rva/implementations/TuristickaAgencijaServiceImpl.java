@@ -49,7 +49,12 @@ public class TuristickaAgencijaServiceImpl implements TuristickaAgencijaService 
 
 	@Override
 	public List<TuristickaAgencija> getTuristickaAgencijasByNaziv(String naziv) {
-		return repo.findByNazivLike(naziv);
+		return repo.findByNazivContainingIgnoreCase(naziv);
+	}
+
+	@Override
+	public Optional<TuristickaAgencija> findById(long id) {
+		return repo.findById(id);
 	}
 
 }

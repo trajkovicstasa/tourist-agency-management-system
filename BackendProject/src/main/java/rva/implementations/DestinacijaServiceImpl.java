@@ -49,7 +49,13 @@ public class DestinacijaServiceImpl implements DestinacijaService {
 
 	@Override
 	public List<Destinacija> getDestinacijasByMesto(String mesto) {
-		return repo.findByMestoLike(mesto);
+		return repo.findByMestoContainingIgnoreCase(mesto);
+	}
+
+	@Override
+	public Optional<Destinacija> findById(long id) {
+		
+		return repo.findById(id);
 	}
 
 }

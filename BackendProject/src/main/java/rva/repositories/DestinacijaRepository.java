@@ -8,6 +8,6 @@ import rva.model.Destinacija;
 
 public interface DestinacijaRepository extends JpaRepository<Destinacija, Long> {
 	
-	List<Destinacija> findByMestoLike(String mesto);
+	List<Destinacija> findByMestoContainingIgnoreCase(String mesto);
 
 }

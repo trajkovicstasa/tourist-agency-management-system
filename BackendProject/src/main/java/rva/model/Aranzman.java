@@ -34,9 +34,14 @@ public class Aranzman {
 	
 	
 	//KONSTRUKTOR
-	public Aranzman(long id, double ukupnaCena, boolean placeno, Date datumRealizacije) {
+	
+	public Aranzman() {
+		
+	}
+	
+	public Aranzman(double ukupnaCena, boolean placeno, Date datumRealizacije) {
 		super();
-		this.id = id;
+	
 		this.ukupnaCena = ukupnaCena;
 		this.placeno = placeno;
 		this.datumRealizacije = datumRealizacije;

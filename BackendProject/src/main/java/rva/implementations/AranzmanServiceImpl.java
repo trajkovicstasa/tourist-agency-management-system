@@ -63,4 +63,10 @@ public class AranzmanServiceImpl implements AranzmanService {
 		return repo.findByAgencija(agencija);
 	}
 
+	@Override
+	public Optional<Aranzman> findById(long id) {
+		
+		return repo.findById(id);
+	}
+
 }

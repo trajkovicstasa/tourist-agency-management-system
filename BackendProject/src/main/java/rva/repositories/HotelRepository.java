@@ -9,7 +9,7 @@ import rva.model.Hotel;
 
 public interface HotelRepository extends JpaRepository<Hotel, Long> {
 	
-	List<Hotel> findByNazivLike(String naziv);
+	List<Hotel> findByNazivContainingIgnoreCase(String naziv);
 	List<Hotel> findByDestinacija(Destinacija destinacija);
 
 }

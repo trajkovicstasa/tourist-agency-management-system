@@ -9,6 +9,8 @@ public interface CrudService<T> {
 	
 	boolean existsById(long id);
 	
+	Optional<T> findById(long id);
+	
 	T create (T body);
 	
 	Optional<T> update(T body, long id);
