@@ -61,7 +61,7 @@ public class TuristickaAgencijaController {
 		return ResponseEntity.ok(updatedTuristickaAgencija);
 	}
 	
-	@DeleteMapping("/hotels")
+	@DeleteMapping("/turistickaagencijas")
 	public ResponseEntity<?> deleteHotel(@RequestParam Long id){
 		if(!service.existsById(id))return ResponseEntity.status(400)
 				.body(String.format("Resource with requested ID: %s does not exist", id));

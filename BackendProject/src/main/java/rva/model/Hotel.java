@@ -37,12 +37,13 @@ public class Hotel {
 		
 	}
 	
-	public Hotel( String naziv, int brojZvezdica, String opis, int destinacija) {
+	public Hotel( String naziv, int brojZvezdica, String opis, Destinacija destinacija) {
 		super();
 		
 		this.naziv = naziv;
 		this.brojZvezdica = brojZvezdica;
 		this.opis = opis;
+		this.destinacija = destinacija;
 		
 	}
 	
@@ -71,6 +72,10 @@ public class Hotel {
 	}
 	public void setOpis(String opis) {
 		this.opis = opis;
+	}
+	
+	public Destinacija getDestinacija() {
+		return destinacija;
 	}
 	
 	

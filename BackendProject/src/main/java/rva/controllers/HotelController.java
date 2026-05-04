@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import rva.model.Destinacija;
 import rva.model.Hotel;
+import rva.services.DestinacijaService;
 import rva.services.HotelService;
 
 @RestController
@@ -23,6 +24,7 @@ public class HotelController {
 	
 	@Autowired
 	private HotelService service;
+	private DestinacijaService destinacijaService;
 	
 	@GetMapping("/hotels")
 	public ResponseEntity<?> getHotels(@RequestParam(required = false) String naziv, @RequestParam(required = false) Long id){
@@ -35,7 +37,7 @@ public class HotelController {
 		}else if(naziv == null && id != null) {
 			Optional<Hotel> hotel = service.findById(id);
 			if(hotel.isEmpty()) return ResponseEntity.status(404)
-					.body(String.format("Destinacija with ID: %s does not exist", id));
+					.body(String.format("Hotel with ID: %s does not exist", id));
 			return ResponseEntity.ok(hotel);
 			
 		}else if(naziv != null && id != null){
@@ -44,6 +46,25 @@ public class HotelController {
 		
 		return ResponseEntity.ok(service.getAll());
 	}
+	
+	@GetMapping("/hotels/destinacija")
+	public ResponseEntity<?> getHotelByDestinacija(@RequestParam Long destinacijaId){
+		Optional<Destinacija> destinacija = destinacijaService.findById(destinacijaId);
+		if(destinacija.isEmpty()) {
+			return ResponseEntity.status(404)
+					.body(String.format("Destinacija with an ID: %s does not exist",
+							destinacijaId));
+		}
+		
+		List<Hotel> hotels = service.getHotelsByDestinacija(destinacija.get());
+		if(hotels.isEmpty()) {
+			return ResponseEntity.status(404)
+					.body(String.format("Hotel with destinacija ID: %s does not exist.", destinacijaId));
+		}
+		
+		return ResponseEntity.ok(hotels);
+	}
+	
 	
 	@PostMapping("/hotels")
 	public ResponseEntity<?> createHotel(@RequestBody Hotel hotel){
