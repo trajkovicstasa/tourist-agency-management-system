@@ -47,6 +47,24 @@ public class Aranzman {
 		this.datumRealizacije = datumRealizacije;
 	}
 	
+	public Aranzman(double ukupnaCena, boolean placeno, Date datumRealizacije, Hotel hotel) {
+		super();
+	
+		this.ukupnaCena = ukupnaCena;
+		this.placeno = placeno;
+		this.datumRealizacije = datumRealizacije;
+		this.hotel = hotel;
+	}
+	
+	public Aranzman(double ukupnaCena, boolean placeno, Date datumRealizacije, TuristickaAgencija agencija) {
+		super();
+	
+		this.ukupnaCena = ukupnaCena;
+		this.placeno = placeno;
+		this.datumRealizacije = datumRealizacije;
+		this.agencija = agencija;
+	}
+	
 	
 	//GETERI I SETERI
 	public long getId() {
@@ -74,5 +92,11 @@ public class Aranzman {
 		this.datumRealizacije = datumRealizacije;
 	}
 	
+	public Hotel getHotel() {
+		return hotel;
+	}
 	
+	public TuristickaAgencija getTuristickaAgencija() {
+		return agencija;
+	}
 }

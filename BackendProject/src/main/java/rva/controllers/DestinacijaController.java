@@ -16,13 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import rva.model.Destinacija;
+
 import rva.services.DestinacijaService;
+
 
 @RestController
 public class DestinacijaController {
 	
 	@Autowired
 	private DestinacijaService service;
+	
 	
 	@GetMapping("/destinacijas")
 	public ResponseEntity<?> getDestinacijas(@RequestParam(required = false) String mesto, @RequestParam(required = false) Long id){
@@ -44,6 +47,8 @@ public class DestinacijaController {
 		
 		return ResponseEntity.ok(service.getAll());
 	}
+	
+	
 	
 	@PostMapping("/destinacijas")
 	public ResponseEntity<?> createDestinacija(@RequestBody Destinacija destinacija){
