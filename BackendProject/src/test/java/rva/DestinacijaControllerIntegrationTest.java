@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import rva.model.Destinacija;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class DestinacijaControllerIntegrationTest {
 	
@@ -43,11 +43,11 @@ class DestinacijaControllerIntegrationTest {
 		int id = 3;
 		
 		ResponseEntity<Destinacija> response = 
-				template.exchange(apiUrl + "?id=", HttpMethod.GET, null, 
+				template.exchange(apiUrl + "?id=" + id, HttpMethod.GET, null, 
 				Destinacija.class);
 		
 		assertEquals(200, response.getStatusCode().value());
-		assertNotEquals(id, response.getBody().getId());
+		assertEquals(id, response.getBody().getId());
 		
 	}
 	
@@ -103,7 +103,7 @@ class DestinacijaControllerIntegrationTest {
 		ResponseEntity<Destinacija> response = 
 		template.exchange(apiUrl + "?id=" + largestId, HttpMethod.PUT, entity, Destinacija.class);
 		
-		assertEquals(201, response.getStatusCode().value());
+		assertEquals(200, response.getStatusCode().value());
 		assertEquals(destinacija.getMesto(), response.getBody().getMesto());
 		assertEquals(destinacija.getOpis(), response.getBody().getOpis());
 		

@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import rva.model.Aranzman;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AranzmanControllerIntegrationTest {
 	
@@ -42,11 +42,11 @@ class AranzmanControllerIntegrationTest {
 		int id = 3;
 		
 		ResponseEntity<Aranzman> response = 
-				template.exchange(apiUrl + "?id=", HttpMethod.GET, null, 
+				template.exchange(apiUrl + "?id=" + id, HttpMethod.GET, null, 
 				Aranzman.class);
 		
 		assertEquals(200, response.getStatusCode().value());
-		assertNotEquals(id, response.getBody().getId());
+		assertEquals(id, response.getBody().getId());
 		
 	}
 	
@@ -79,24 +79,24 @@ class AranzmanControllerIntegrationTest {
 		
 		assertEquals(200, response.getStatusCode().value());
 		for(Aranzman a: response.getBody()) {
-			assertEquals(foreignKey, a.getTuristickaAgencija().getId());
+			assertEquals(foreignKey, a.getAgencija().getId());
 		}
 		
 	}
 	
 	@Test
 	@Order(5)
-	void getAranzmanByUkupnaCena() {
-		double ukupnaCena = 1200.00;
+	void getAranzmanByPlaceno() {
+		 boolean placeno = true;
 		
 		ResponseEntity<List<Aranzman>> response = 
-				template.exchange(apiUrl + "?ukupnaCena=" + ukupnaCena,
+				template.exchange(apiUrl + "?placeno=" + placeno,
 				HttpMethod.GET, null, 
 				new ParameterizedTypeReference<List<Aranzman>>() {});
 		
 		assertEquals(200, response.getStatusCode().value());
 		for(Aranzman a: response.getBody()) {
-			assertEquals(ukupnaCena, a.getUkupnaCena());
+				assertEquals(placeno, a.isPlaceno());
 		}
 		
 	}
@@ -134,7 +134,7 @@ class AranzmanControllerIntegrationTest {
 		ResponseEntity<Aranzman> response = 
 		template.exchange(apiUrl + "?id=" + largestId, HttpMethod.PUT, entity, Aranzman.class);
 		
-		assertEquals(201, response.getStatusCode().value());
+		assertEquals(200, response.getStatusCode().value());
 		assertEquals(aranzman.getUkupnaCena(), response.getBody().getUkupnaCena());
 		assertEquals(aranzman.isPlaceno(), response.getBody().isPlaceno());
 		

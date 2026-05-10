@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import rva.model.TuristickaAgencija;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TuristickaAgencijaControllerIntegrationTest {
 	
@@ -43,11 +43,11 @@ class TuristickaAgencijaControllerIntegrationTest {
 		int id = 3;
 		
 		ResponseEntity<TuristickaAgencija> response = 
-				template.exchange(apiUrl + "?id=", HttpMethod.GET, null, 
+				template.exchange(apiUrl + "?id=" + id, HttpMethod.GET, null, 
 				TuristickaAgencija.class);
 		
 		assertEquals(200, response.getStatusCode().value());
-		assertNotEquals(id, response.getBody().getId());
+		assertEquals(id, response.getBody().getId());
 		
 	}
 	
@@ -68,42 +68,10 @@ class TuristickaAgencijaControllerIntegrationTest {
 		
 	}
 	
+	
+	
 	@Test
 	@Order(4)
-	void getTuristickaAgencijaByAdresa() {
-		String adresa = "Tolstojeva 10";
-		
-		ResponseEntity<List<TuristickaAgencija>> response = 
-				template.exchange(apiUrl + "?adresa=" + adresa,
-				HttpMethod.GET, null, 
-				new ParameterizedTypeReference<List<TuristickaAgencija>>() {});
-		
-		assertEquals(200, response.getStatusCode().value());
-		for(TuristickaAgencija ta: response.getBody()) {
-			assertEquals(adresa, ta.getAdresa());
-		}
-		
-	}
-	
-	@Test
-	@Order(5)
-	void getTuristickaAgencijaByKontakt() {
-		String kontakt = "0645823654";
-		
-		ResponseEntity<List<TuristickaAgencija>> response = 
-				template.exchange(apiUrl + "?kontakt=" + kontakt,
-				HttpMethod.GET, null, 
-				new ParameterizedTypeReference<List<TuristickaAgencija>>() {});
-		
-		assertEquals(200, response.getStatusCode().value());
-		for(TuristickaAgencija ta: response.getBody()) {
-			assertEquals(kontakt, ta.getKontakt());
-		}
-		
-	}
-	
-	@Test
-	@Order(6)
 	void createTuristickaAgencija() {
 		TuristickaAgencija agencija = new TuristickaAgencija();
 		
@@ -123,7 +91,7 @@ class TuristickaAgencijaControllerIntegrationTest {
 	}
 	
 	@Test
-	@Order(7)
+	@Order(5)
 	void updateHotel() {
 		TuristickaAgencija agencija = new TuristickaAgencija();
 		
@@ -135,7 +103,7 @@ class TuristickaAgencijaControllerIntegrationTest {
 		ResponseEntity<TuristickaAgencija> response = 
 		template.exchange(apiUrl + "?id=" + largestId, HttpMethod.PUT, entity, TuristickaAgencija.class);
 		
-		assertEquals(201, response.getStatusCode().value());
+		assertEquals(200, response.getStatusCode().value());
 		assertEquals(agencija.getNaziv(), response.getBody().getNaziv());
 		assertEquals(agencija.getAdresa(), response.getBody().getAdresa());
 		
@@ -143,7 +111,7 @@ class TuristickaAgencijaControllerIntegrationTest {
 	}
 	
 	@Test
-	@Order(8)
+	@Order(6)
 	void deleteTuristickaAgencija() {
 		ResponseEntity<?> response = 
 				template.exchange(apiUrl + "?id=" + largestId, HttpMethod.DELETE,

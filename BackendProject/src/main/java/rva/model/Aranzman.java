@@ -96,7 +96,15 @@ public class Aranzman {
 		return hotel;
 	}
 	
-	public TuristickaAgencija getTuristickaAgencija() {
+	public TuristickaAgencija getAgencija() {
 		return agencija;
+	}
+	
+	public void setAgencija(TuristickaAgencija agencija) {
+	    this.agencija = agencija;
+	}
+
+	public void setHotel(Hotel hotel) {
+	    this.hotel = hotel;
 	}
 }

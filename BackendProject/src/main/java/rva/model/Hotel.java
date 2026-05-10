@@ -78,6 +78,9 @@ public class Hotel {
 		return destinacija;
 	}
 	
+	public void setDestinacija(Destinacija destinacija) {
+	    this.destinacija = destinacija;
+	}
 	
 	
 }

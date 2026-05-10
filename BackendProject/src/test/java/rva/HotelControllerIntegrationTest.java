@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import rva.model.Hotel;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class HotelControllerIntegrationTest {
 	
@@ -44,11 +44,11 @@ class HotelControllerIntegrationTest {
 		int id = 3;
 		
 		ResponseEntity<Hotel> response = 
-				template.exchange(apiUrl + "?id=", HttpMethod.GET, null, 
+				template.exchange(apiUrl + "?id=" + id, HttpMethod.GET, null, 
 				Hotel.class);
 		
 		assertEquals(200, response.getStatusCode().value());
-		assertNotEquals(id, response.getBody().getId());
+		assertEquals(id, response.getBody().getId());
 		
 	}
 	
@@ -119,7 +119,7 @@ class HotelControllerIntegrationTest {
 		ResponseEntity<Hotel> response = 
 		template.exchange(apiUrl + "?id=" + largestId, HttpMethod.PUT, entity, Hotel.class);
 		
-		assertEquals(201, response.getStatusCode().value());
+		assertEquals(200, response.getStatusCode().value());
 		assertEquals(hotel.getBrojZvezdica(), response.getBody().getBrojZvezdica());
 		assertEquals(hotel.getOpis(), response.getBody().getOpis());
 		

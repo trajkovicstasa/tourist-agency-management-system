@@ -24,6 +24,7 @@ public class HotelController {
 	
 	@Autowired
 	private HotelService service;
+	@Autowired
 	private DestinacijaService destinacijaService;
 	
 	@GetMapping("/hotels")
