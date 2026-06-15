@@ -6,6 +6,7 @@ import { AranzmanComponent } from './components/main/aranzman/aranzman';
 import { AuthorComponent } from './components/utility/author/author';
 import { AboutComponent } from './components/utility/about/about';
 import { HomeComponent } from './components/utility/home/home';
+import { Component } from '@angular/core';
 
 
 export const routes: Routes = [
@@ -16,5 +17,5 @@ export const routes: Routes = [
     {path:'author', component:AuthorComponent},
     {path:'about', component:AboutComponent},
     {path:'', component:HomeComponent, pathMatch:'full'},
-
-];
+    {path:'home', component: HomeComponent},
+    {path:'', component: HomeComponent, pathMatch:'full'}];

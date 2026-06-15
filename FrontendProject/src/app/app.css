@@ -13,3 +13,6 @@ a[mat-raised-button]{
     color: white;
 }
 
+a[mat-button]{
+    color: rgb(124, 224, 101);
+}
