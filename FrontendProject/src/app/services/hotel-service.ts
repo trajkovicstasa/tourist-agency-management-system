@@ -15,16 +15,16 @@ export class HotelService {
     return this.httpClient.get<Hotel[]>('http://localhost:8080/hotels');
   }
 
-  public createHotel(hotel:Hotel):Observable<any>{
-    return this.httpClient.post('http://localhost:8080/hotel', hotel)
+  public createHotel(hotel:Hotel):Observable<Hotel>{
+    return this.httpClient.post<Hotel>('http://localhost:8080/hotels', hotel)
   }
 
-  public updateHotel(hotel:Hotel):Observable<any>{
-    return this.httpClient.put(`http://localhost:8080/hotel?id=${hotel.id}`, hotel)
+  public updateHotel(hotel:Hotel):Observable<Hotel>{
+    return this.httpClient.put<Hotel>(`http://localhost:8080/hotels?id=${hotel.id}`, hotel)
   }
 
   public deleteHotel(id:number):Observable<any>{
-    return this.httpClient.delete(`http://localhost:8080/hotel?id=${id}`)
+    return this.httpClient.delete(`http://localhost:8080/hotels?id=${id}`)
   }
 
 }

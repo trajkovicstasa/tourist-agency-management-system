@@ -11,24 +11,20 @@ import { Aranzman } from '../models/aranzman';
 export class AranzmanService {
   constructor(private httpClient: HttpClient){ }
 
-  public getAllAranzmans(): Observable<any>{
-    return this.httpClient.get('http://localhost:8080/aranzmans');
+  public getAllAranzmans(): Observable<Aranzman[]>{
+    return this.httpClient.get<Aranzman[]>('http://localhost:8080/aranzmans');
   }
 
-  public getAranzmansByHotelId(hotelId: number): Observable<any> {
-  return this.httpClient.get(`http://localhost:8080/aranzmans/hotel?id=${hotelId}`);
-}
-
-  public createAranzman(aranzman:Aranzman):Observable<any>{
-    return this.httpClient.post('http://localhost:8080/aranzman', aranzman)
+  public createAranzman(aranzman:Aranzman):Observable<Aranzman>{
+    return this.httpClient.post<Aranzman>('http://localhost:8080/aranzmans', aranzman)
   }
 
-  public updateAranzman(aranzman:Aranzman):Observable<any>{
-    return this.httpClient.put(`http://localhost:8080/aranzman?id=${aranzman.id}`, aranzman)
+  public updateAranzman(aranzman:Aranzman):Observable<Aranzman>{
+    return this.httpClient.put<Aranzman>(`http://localhost:8080/aranzmans?id=${aranzman.id}`, aranzman)
   }
 
   public deleteAranzman(id:number):Observable<any>{
-    return this.httpClient.delete(`http://localhost:8080/aranzman?id=${id}`)
+    return this.httpClient.delete(`http://localhost:8080/aranzmans?id=${id}`)
   }
 
 }

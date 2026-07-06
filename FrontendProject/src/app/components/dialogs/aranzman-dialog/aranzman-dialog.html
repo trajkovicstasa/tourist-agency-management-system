@@ -1,0 +1,111 @@
+<div class="container">
+  <ng-container *ngIf="flag === 1">
+    <h3 mat-dialog-title>Adding aranzman</h3>
+  </ng-container>
+  <ng-container *ngIf="flag === 2">
+    <h3 mat-dialog-title>Updating aranzman: {{ data.ukupnaCena }}</h3>
+  </ng-container>
+  <ng-container *ngIf="flag === 3">
+    <h3 mat-dialog-title>Deleting aranzman: {{ data.ukupnaCena }}</h3>
+  </ng-container>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="ukupnaCena"
+          name="ukupnaCena"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.ukupnaCena"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Placeno"
+          name="Placeno"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.placeno"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+     <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          [matDatepicker]="datumRealizacije"
+          placeholder="Datum Realizacije"
+          name="datumRealizacije"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.datumRealizacije"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="datumRealizacije"></mat-datepicker-toggle>
+        <mat-datepicker #datumRealizacije></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Hotel</mat-label>
+        <mat-select name="hotel" [(ngModel)]="data.hotel" [compareWith]="compare" [disabled]="flag == 3" required>
+          @for (hotel of hoteli; track hotel.id) {
+            <mat-option [value]="hotel">
+              {{ hotel.naziv }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Agencija</mat-label>
+        <mat-select name="agencija" [(ngModel)]="data.agencija" [disabled]="flag == 3" required>
+          @for (agencija of agencije; track agencija.id) {
+            <mat-option [value]="agencija">
+              {{ agencija.naziv }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="mat-dialog-actions">
+    <ng-container *ngIf="flag === 1">
+      <button
+        matButton
+        type="submit"
+        [disabled]="!formControl.valid"
+        (click)="add()"
+      >
+        Save
+      </button>
+     </ng-container>
+    <ng-container *ngIf="flag === 2">
+      <button
+        matButton
+        type="submit"
+        [disabled]="!formControl.valid"
+        (click)="update()"
+      >
+        Update
+      </button>
+    </ng-container>
+     <ng-container *ngIf="flag === 3">
+      <button matButton (click)="delete()">
+        Delete
+      </button>
+    </ng-container>
+
+    <button matButton (click)="cancel()">Cancel</button>
+  </div>
+</div>

@@ -10,20 +10,20 @@ import { TuristickaAgencija } from '../models/turistickaAgencija';
 export class TuristickaAgencijaService {
   constructor(private httpClient: HttpClient){ }
 
-  public getAllTuristickaAgencijas(): Observable<any>{
-    return this.httpClient.get('http://localhost:8080/turistickaagencijas');
+  public getAllTuristickaAgencijas(): Observable<TuristickaAgencija[]>{
+    return this.httpClient.get<TuristickaAgencija[]>('http://localhost:8080/turistickaagencijas');
   }
 
-  public createTuristickaAgencija(turistickaAgencija:TuristickaAgencija):Observable<any>{
-    return this.httpClient.post('http://localhost:8080/turistickaagencija', turistickaAgencija)
+  public createTuristickaAgencija(turistickaAgencija:TuristickaAgencija):Observable<TuristickaAgencija>{
+    return this.httpClient.post<TuristickaAgencija>('http://localhost:8080/turistickaagencijas', turistickaAgencija)
   }
 
-  public updateTuristickaAgencija(turistickaAgencija:TuristickaAgencija):Observable<any>{
-    return this.httpClient.put(`http://localhost:8080/turistickaagencija?id=${turistickaAgencija.id}`, turistickaAgencija)
+  public updateTuristickaAgencija(turistickaAgencija:TuristickaAgencija):Observable<TuristickaAgencija>{
+    return this.httpClient.put<TuristickaAgencija>(`http://localhost:8080/turistickaagencijas?id=${turistickaAgencija.id}`, turistickaAgencija)
   }
 
   public deleteTuristickaAgencija(id:number):Observable<any>{
-    return this.httpClient.delete(`http://localhost:8080/turistickaagencija?id=${id}`)
+    return this.httpClient.delete(`http://localhost:8080/turistickaagencijas?id=${id}`)
   }
 
 }

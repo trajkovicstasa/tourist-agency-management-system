@@ -1,0 +1,82 @@
+<div class="container">
+  <ng-container *ngIf="flag === 1">
+    <h3 mat-dialog-title>Adding destinacija</h3>
+  </ng-container>
+  <ng-container *ngIf="flag === 2">
+    <h3 mat-dialog-title>Updating destinacija: {{ data.mesto }}</h3>
+  </ng-container>
+  <ng-container *ngIf="flag === 3">
+    <h3 mat-dialog-title>Deleting destinacija: {{ data.mesto }}</h3>
+  </ng-container>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Mesto"
+          name="Mesto"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.mesto"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Drzava"
+          name="Drzava"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.drzava"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+     <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Opis"
+          name="Opis"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.opis"
+          required
+        />
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="mat-dialog-actions">
+     <ng-container *ngIf="flag === 1">
+      <button
+        matButton
+        type="submit"
+        [disabled]="!formControl.valid"
+        (click)="add()"
+      >
+        Save
+      </button>
+    </ng-container>
+    <ng-container *ngIf="flag === 2">
+      <button
+        matButton
+        type="submit"
+        [disabled]="!formControl.valid"
+        (click)="update()"
+      >
+        Update
+      </button>
+    </ng-container>
+    <ng-container *ngIf="flag === 3">
+      <button matButton (click)="delete()">
+        Delete
+      </button>
+    </ng-container>
+
+    <button matButton (click)="cancel()">Cancel</button>
+  </div>
+</div>

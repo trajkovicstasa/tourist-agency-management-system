@@ -1,0 +1,101 @@
+<div class="container">
+  <ng-container *ngIf="flag === 1">
+    <h3 mat-dialog-title>Adding hotel</h3>
+  </ng-container>
+  <ng-container *ngIf="flag === 2">
+    <h3 mat-dialog-title>Updating hotel: {{ data.naziv }}</h3>
+  </ng-container>
+  <ng-container *ngIf="flag === 3">
+    <h3 mat-dialog-title>Deleting hotel: {{ data.naziv }}</h3>
+  </ng-container>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Naziv"
+          name="Naziv"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.naziv"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="brojZvezdica"
+          name="brojZvezdica"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.brojZvezdica"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+     <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Opis"
+          name="Opis"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.opis"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+     <div class="form">
+      <mat-form-field>
+        <mat-label>Destinacija</mat-label>
+
+        <mat-select
+          name="destinacija"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.destinacija"
+          required
+        >
+          @for (destinacija of destinacije; track destinacija.id) {
+            <mat-option [value]="destinacija">
+              {{ destinacija.mesto }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="mat-dialog-actions">
+    <ng-container *ngIf="flag === 1">
+      <button
+        matButton
+        type="submit"
+        [disabled]="!formControl.valid"
+        (click)="add()"
+      >
+        Save
+      </button>
+    </ng-container>
+    <ng-container *ngIf="flag === 2">
+      <button
+        matButton
+        type="submit"
+        [disabled]="!formControl.valid"
+        (click)="update()"
+      >
+        Update
+      </button>
+    </ng-container>
+    <ng-container *ngIf="flag === 3">
+      <button matButton (click)="delete()">
+        Delete
+      </button>
+    </ng-container>
+
+    <button matButton (click)="cancel()">Cancel</button>
+  </div>
+</div>

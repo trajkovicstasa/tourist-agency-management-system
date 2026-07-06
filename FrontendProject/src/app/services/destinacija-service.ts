@@ -10,20 +10,20 @@ import { Destinacija } from '../models/destinacija';
 export class DestinacijaService {
   constructor(private httpClient: HttpClient){ }
 
-  public getAllDestinacijas(): Observable<any>{
-    return this.httpClient.get('http://localhost:8080/destinacijas');
+  public getAllDestinacijas(): Observable<Destinacija[]>{
+    return this.httpClient.get<Destinacija[]>('http://localhost:8080/destinacijas');
   }
 
-  public createDestinacija(destinacija:Destinacija):Observable<any>{
-    return this.httpClient.post('http://localhost:8080/destinacija', destinacija)
+  public createDestinacija(destinacija:Destinacija):Observable<Destinacija>{
+    return this.httpClient.post<Destinacija>('http://localhost:8080/destinacijas', destinacija)
   }
 
-  public updateDestinacija(destinacija:Destinacija):Observable<any>{
-    return this.httpClient.put(`http://localhost:8080/destinacija?id=${destinacija.id}`, destinacija)
+  public updateDestinacija(destinacija:Destinacija):Observable<Destinacija>{
+    return this.httpClient.put<Destinacija>(`http://localhost:8080/destinacijas?id=${destinacija.id}`, destinacija)
   }
 
   public deleteDestinacija(id:number):Observable<any>{
-    return this.httpClient.delete(`http://localhost:8080/destinacija?id=${id}`)
+    return this.httpClient.delete(`http://localhost:8080/destinacijas?id=${id}`)
   }
 
 }
