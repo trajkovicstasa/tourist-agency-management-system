@@ -1,4 +1,4 @@
-import { bootstrapApplication } from '@angular/platform-browser';
+import { bootstrapApplication } from '@angular/platform-browser'; // ova funkcija kreira Angular aplikaciju
 import { appConfig } from './app/app.config';
 import { App } from './app/app';
 

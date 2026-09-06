@@ -10,6 +10,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { TuristickaAgencija } from '../../../models/turistickaAgencija';
 import { Destinacija } from '../../../models/destinacija';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-aranzman-component',
@@ -20,7 +21,8 @@ import { Destinacija } from '../../../models/destinacija';
     MatPaginatorModule,
     MatIconModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+    DatePipe
   ],
   templateUrl: './aranzman-component.html',
   styleUrl: './aranzman-component.css',
@@ -109,6 +111,9 @@ export class AranzmanComponent implements OnInit, OnChanges, AfterViewInit {
     hotel?:any,
     agencija?:any,
   ): void {
+    if (this.childSelectedTuristickaAgencija) {
+      agencija = this.childSelectedTuristickaAgencija;
+    }
 
     const ref = this.dialog.open(AranzmanDialog, {
       data: {

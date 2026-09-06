@@ -10,22 +10,24 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 
-@Entity
+@Entity // Znaci da ce Hibernate napraviti tabelu destinacija 
 public class Aranzman {
 
-	@Id
+	@Id // Primarni kljuc tabele 
 	@SequenceGenerator(name = "aranzman_seq", sequenceName = "aranzman_seq", 
-	allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator  = "aranzman_seq")
+	allocationSize = 1) // pravi se sekvenca, svaki novi objekat dobija sledeci broj, i povecava se za jedan
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator  = "aranzman_seq")// isto kao prethodno oba to rade
 	private long id;
 	private double ukupnaCena;
 	private boolean placeno;
 	private Date datumRealizacije;
 	
+	// VISE ARANZMANA moze pripadati JEDNOM HOTELU
 	@ManyToOne
 	@JoinColumn(name = "hotel")
 	private Hotel hotel;
 	
+	// VISE ARANZMANA moze pripadati JEDNOJ TURISTICKOJ AGENCIJI
 	@ManyToOne
 	@JoinColumn(name = "agencija")
 	private TuristickaAgencija agencija;

@@ -129,7 +129,7 @@ export class HotelDialog implements OnInit {
     );
   }
 
-  public compare (a:any, b:any){
-    return a.id == b.id;
+  public compare(a: { id: number } | null, b: { id: number } | null): boolean {
+    return a && b ? a.id === b.id : a === b;
   }
 }

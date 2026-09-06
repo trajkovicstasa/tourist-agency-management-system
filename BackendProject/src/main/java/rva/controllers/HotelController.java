@@ -20,8 +20,8 @@ import rva.model.Hotel;
 import rva.services.DestinacijaService;
 import rva.services.HotelService;
 
-@RestController
-@CrossOrigin
+@RestController // oznacava klasu kao rest kontroler. Spring ce pronaci ovu klasu i registrovati njene endpointe
+@CrossOrigin // dozvoljava da frontend sa druge adrese ili porta poziva backend
 public class HotelController {
 	
 	@Autowired
@@ -29,7 +29,7 @@ public class HotelController {
 	@Autowired
 	private DestinacijaService destinacijaService;
 	
-	@GetMapping("/hotels")
+	@GetMapping("/hotels")// metoda se izvrsava kad stigne GET /hotels
 	public ResponseEntity<?> getHotels(@RequestParam(required = false) String naziv, @RequestParam(required = false) Long id){
 		if(naziv != null && id == null) {
 			List<Hotel> hotels = service.getHotelsByNaziv(naziv);
@@ -58,7 +58,7 @@ public class HotelController {
 					.body(String.format("Destinacija with an ID: %s does not exist",
 							destinacijaId));
 		}
-		
+		// @RequestParam Long id - cita vrednosti iz URL query parametra
 		List<Hotel> hotels = service.getHotelsByDestinacija(destinacija.get());
 		if(hotels.isEmpty()) {
 			return ResponseEntity.status(404)
@@ -69,15 +69,15 @@ public class HotelController {
 	}
 	
 	
-	@PostMapping("/hotels")
+	@PostMapping("/hotels") // metoda se izvrsava kad stigne POST /hotels
 	public ResponseEntity<?> createHotel(@RequestBody Hotel hotel){
 		Hotel savedHotel = service.create(hotel);
 		URI uri = URI.create(String.format("/hotels?id=%s", savedHotel.getId()));
 		return ResponseEntity.created(uri).body(savedHotel);
 	}
-	
-	@PutMapping("/hotels")
-	public ResponseEntity<?> updateHotel(@RequestBody Hotel hotel,
+	// @RequestBody - Spring uzima JSON iz tela i pretvara ga u JAVA objekat
+	@PutMapping("/hotels") // PUT /hotels
+	public ResponseEntity<?> updateHotel(@RequestBody Hotel hotel, // ? znaci da telo odgovora moze biti razlicitog tipa
 			@RequestParam Long id) {
 		Optional<Hotel> updatedHotel = service.update(hotel, id);
 		if(updatedHotel.isEmpty())return ResponseEntity.status(400)
@@ -85,7 +85,7 @@ public class HotelController {
 		return ResponseEntity.ok(updatedHotel);
 	}
 	
-	@DeleteMapping("/hotels")
+	@DeleteMapping("/hotels") // izvrsava se za DELETE /hotels
 	public ResponseEntity<?> deleteHotel(@RequestParam Long id){
 		if(!service.existsById(id))return ResponseEntity.status(400)
 				.body(String.format("Resource with requested ID: %s does not exist", id));

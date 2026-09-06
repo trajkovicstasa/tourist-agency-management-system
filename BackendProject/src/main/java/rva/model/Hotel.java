@@ -25,10 +25,17 @@ public class Hotel {
 	private String opis;
 
 	
+	// JEDAN HOTEL MOZE BITI U VISE ARANZMANA
 	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
 	private List<Aranzman> aranzman;
+	/*
+	mappedBy = "hotel"
+	- veza je definisana u klasi ARANZMAN kao strani kljuc
+	*/
 	
+	// VISE HOTELA pripada JEDNOJ DESTINACIJI
 	@ManyToOne
+	// znaci da ce u tabeli HOTEL postojati kolona DESTINACIJA koja cuva ID DESTINACIJE
 	@JoinColumn(name = "destinacija")
 	private Destinacija destinacija;
 	

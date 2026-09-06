@@ -11,6 +11,7 @@ import { HotelComponent } from '../hotel-component/hotel-component';
 import { CommonModule } from '@angular/common';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-turisticka-agencija-component',
@@ -19,6 +20,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatButtonModule,
     MatIconModule,
     MatToolbarModule,
     MatDialogModule,

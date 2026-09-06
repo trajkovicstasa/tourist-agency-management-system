@@ -27,7 +27,7 @@
 
    <ng-container matColumnDef="actions">
   <th mat-header-cell *matHeaderCellDef>
-    <button mat-icon-button (click)="openDialog(1)">
+    <button mat-icon-button (click)="$event.stopPropagation(); openDialog(1)">
       <mat-icon color="accent">add</mat-icon>
     </button>
   </th>
@@ -36,14 +36,14 @@
 
     <button
       mat-icon-button
-      (click)="openDialog(2, row.id, row.naziv, row.adresa, row.kontakt)"
+      (click)="$event.stopPropagation(); openDialog(2, row.id, row.naziv, row.adresa, row.kontakt)"
     >
       <mat-icon color="primary">edit</mat-icon>
     </button>
 
     <button
       mat-icon-button
-      (click)="openDialog(3, row.id, row.naziv, row.adresa, row.kontakt)"
+      (click)="$event.stopPropagation(); openDialog(3, row.id, row.naziv, row.adresa, row.kontakt)"
     >
       <mat-icon color="warn">delete</mat-icon>
     </button>
@@ -60,9 +60,9 @@
 
 <div class="selected-info" *ngIf="parentSelectedTuristickaAgencija as selectedAgencija">
   <p>Izabrana turisticka agencija: {{ selectedAgencija.naziv }}</p>
-  <p>Prikaz aranzmana za ovu agenciju je otvoren automatski.</p>
-
-    </div>
+  <button mat-button type="button" (click)="setActiveChild('aranzman')">Aranzmani</button>
+  <button mat-button type="button" (click)="setActiveChild('hotel')">Hoteli</button>
+</div>
 
 <app-hotel-component
   *ngIf="activeChild === 'hotel'"

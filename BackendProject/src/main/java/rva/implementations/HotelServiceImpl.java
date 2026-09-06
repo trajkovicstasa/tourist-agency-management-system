@@ -11,17 +11,21 @@ import rva.model.Hotel;
 import rva.repositories.HotelRepository;
 import rva.services.HotelService;
 
-@Component
+// Ovo je komponenta aplikacije. Napravi njen objekat i upravljaj njime.
+@Component// registruje klasu kao Spring Bean kako bi Spring mogao automatski da kreira njen objekat i koristi ga u aplikaciji
 public class HotelServiceImpl implements HotelService {
-
-	@Autowired
+//ako ova klasa ne implementira sve metode iz servisa javljace gresku
+	@Autowired // Spring anotacija za Dependency injection tj ubrizgavanje zavisnosti
+	// To znaci da Spring automatski pronalazi odgovarajuci objekat  i dodeljuje ga ovoj promenljivoj
 	private HotelRepository repo;
 	
+	//Ova metoda prepisuje tj implementira metodu iz interfejsa
+	// to je ista metoda samo sada ima konkretan kod
 	@Override
 	public List<Hotel> getAll() {
 		return repo.findAll();
 	}
-
+ 
 	@Override
 	public boolean existsById(long id) {
 		return repo.existsById(id);

@@ -10,5 +10,5 @@ import rva.model.TuristickaAgencija;
 public interface TuristickaAgencijaService extends CrudService<TuristickaAgencija> {
 	
 	List<TuristickaAgencija> getTuristickaAgencijasByNaziv(String naziv);
-
+	// trazi agencije po nazivu 
 }

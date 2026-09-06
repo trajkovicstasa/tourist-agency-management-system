@@ -17,23 +17,23 @@ import org.springframework.web.client.RestTemplate;
 
 import rva.model.Aranzman;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT) // Pokrece celu Springboot apl i stvarni web server
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class) // kaze JUnitu da metode izvrsava prema anotaciji @Order
 class AranzmanControllerIntegrationTest {
 	
-	static RestTemplate template = new RestTemplate();
-	static String apiUrl = "http://localhost:8080/aranzmans";
-	static long largestId = 0;
+	static RestTemplate template = new RestTemplate();// Spring klijent koji salje HTTP zahteve
+	static String apiUrl = "http://localhost:8080/aranzmans"; // osnovna adresa endpointa koji se testira
+	static long largestId = 0; // ovde se cuva ID objekta koji test kreira
 
 	@Test
 	@Order(1)
 	void getAllAranzmans() {
 		ResponseEntity<List<Aranzman>> response = 
 				template.exchange(apiUrl, HttpMethod.GET, null, 
-				new ParameterizedTypeReference<List<Aranzman>>() {});
+				new ParameterizedTypeReference<List<Aranzman>>() {}); // ocekujem niz koji treba da se pretvori u listu 
 		
-		assertEquals(200, response.getStatusCode().value());
-		assertNotEquals(0, response.getBody().size());
+		assertEquals(200, response.getStatusCode().value());// proverava da li je dobijen status jednak 200 
+		assertNotEquals(0, response.getBody().size());// proverava da li velicina liste nije 0, jer lista ne sme biti prazna
 	}
 
 	@Test

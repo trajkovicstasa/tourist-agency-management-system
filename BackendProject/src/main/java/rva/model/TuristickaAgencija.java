@@ -11,20 +11,28 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
-@Entity
+@Entity // kaze Hibernate-u kreiraj tabelu TURISTICKA AGENCIJA
 public class TuristickaAgencija {
-	@Id
+	@Id // ANOTACIJA ZA ID PRIMARNI KLJUC
 	@SequenceGenerator(name = "agencija_seq", sequenceName = "agencija_seq", 
-	allocationSize = 1)
+	allocationSize = 1) // KREIRANJE SEKVENCE ZA ID
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator  = "agencija_seq")
+	
+	// KOLONE U TABELI
 	private long id;
 	private String naziv;
 	private String adresa;
 	private String kontakt;
 	
+	// JEDNA TURISTICKA AGENCIJA MOZE IMATI VISE ARANZMANA
 	@OneToMany(mappedBy = "agencija", cascade = CascadeType.ALL)
 	private List<Aranzman> aranzman;
 	
+	/*
+	 mappedBy = "agencija"
+	 - veza je desfinisana u klasi ARANZMAN private TuristickaAgencija agencija;
+	 - znaci strani kljuc je u tabeli ARANZMAN
+	 */
 
 	
 	//KONTRUKTOR

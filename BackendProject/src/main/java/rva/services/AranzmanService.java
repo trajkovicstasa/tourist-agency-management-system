@@ -11,8 +11,8 @@ import rva.model.TuristickaAgencija;
 @Service
 public interface AranzmanService extends CrudService<Aranzman> {
 
-	List<Aranzman> getAranzmansByPlacenoEquals(boolean placeno);
-	List<Aranzman> getAranzmansByHotel(Hotel hotel);
-	List<Aranzman> getAranzmansByAgencija(TuristickaAgencija agencija);
+	List<Aranzman> getAranzmansByPlacenoEquals(boolean placeno); // vraca ili sve placene ili sve neplacene aranzmane
+	List<Aranzman> getAranzmansByHotel(Hotel hotel); // vraca sve aranzmane jednog hotela
+	List<Aranzman> getAranzmansByAgencija(TuristickaAgencija agencija); // vraca sve aranzmane jedne turisticke agencije
 	
 }

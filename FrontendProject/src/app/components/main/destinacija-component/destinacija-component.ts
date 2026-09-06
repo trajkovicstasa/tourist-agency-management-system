@@ -9,6 +9,8 @@ import { DestinacijaDialog } from '../../dialogs/destinacija-dialog/destinacija-
 import { MatButtonModule } from '@angular/material/button';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { CommonModule } from '@angular/common';
+import { HotelComponent } from '../hotel-component/hotel-component';
 
 @Component({
   selector: 'app-destinacija-component',
@@ -18,7 +20,9 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatPaginatorModule,
     MatIconModule, 
     MatToolbarModule, 
-    MatButtonModule],
+    MatButtonModule,
+    CommonModule,
+    HotelComponent],
   templateUrl: './destinacija-component.html',
   styleUrl: './destinacija-component.css',
 })
@@ -26,6 +30,7 @@ export class DestinacijaComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['id', 'mesto', 'drzava', 'opis', 'actions'];
   dataSource = new MatTableDataSource<Destinacija>([]);
+  selectedDestinacija?: Destinacija;
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -58,6 +63,10 @@ export class DestinacijaComponent implements OnInit, AfterViewInit {
       },
       error: (err) => console.log(err)
     });
+  }
+
+  public selectRow(row: Destinacija): void {
+    this.selectedDestinacija = row;
   }
 
   public openDialog(

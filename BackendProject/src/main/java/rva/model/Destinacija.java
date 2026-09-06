@@ -17,20 +17,35 @@ public class Destinacija {
 	@SequenceGenerator(name = "destinacija_seq", sequenceName = "destinacija_seq", 
 	allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator  = "destinacija_seq")
+	//KOLONE U TABELI 
 	private long id;
+	// KOLONE U TABELI 
 	private String mesto;
 	private String drzava;
 	private String opis;
 	
+	// JEDNA DESTINACIJA MOZE IMATI VISE HOTELA 
 	@OneToMany(mappedBy = "destinacija", cascade = CascadeType.ALL)
-	private List<Hotel> hotel;
+	/*
+	 mappedBy = "destinacija"
+	 - veza nije fizicki zapisana u tabeli DESTINACIJA, vec se strani kljuc
+	 nalazi u tabeli HOTEL u polju private Destinacija destinacija
+	 cascade = CascadeType.ALL 
+	 - znaci da se operacije NAD DESTINACIJOM prenose na HOTELE
+	 - npr. Ako se obrise destinacija, brisu se i hoteli vezani za tu destinaicju
+	 */
+	private List<Hotel> hotel; // LISTA HOTELA KOJA PRIPADA TOJ DESTINACIJI
 	
 	//KONSTRUKTOR
 	
+	// PRAZAN KONSTRUKTOR
+	// - Obavezan je za JPA/Hibernate jer ga koristi kada iz baze pravi JAVA objekat
 	public Destinacija() {
 		
 	}
 	
+	// OBICAN KONSTRUKTOR
+	// - Koristim ga kad rucno pravim novu destinaciju 
 	public Destinacija(String mesto, String drzava, String opis) {
 		super();
 	
@@ -41,6 +56,7 @@ public class Destinacija {
 	
 	
 	//GETERI I SETERI
+	//- sluze da se pristupi privatnim poljima 
 	public long getId() {
 		return id;
 	}
