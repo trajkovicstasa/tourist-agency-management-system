@@ -7,7 +7,6 @@ import { AranzmanComponent } from '../aranzman-component/aranzman-component';
 import { TuristickaAgencija } from '../../../models/turistickaAgencija';
 import { TuristickaAgencijaService } from '../../../services/turistickaAgencija-service';
 import { TuristickaAgencijaDialog } from '../../dialogs/turistickaAgencija-dialog/turistickaAgencija-dialog';
-import { HotelComponent } from '../hotel-component/hotel-component';
 import { CommonModule } from '@angular/common';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -24,7 +23,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatToolbarModule,
     MatDialogModule,
-    HotelComponent,
     AranzmanComponent
   ],
 
@@ -40,8 +38,6 @@ export class TuristickaAgencijaComponent implements OnInit, AfterViewInit {
 
   dataSource!: MatTableDataSource<TuristickaAgencija>;
   parentSelectedTuristickaAgencija?: TuristickaAgencija;
-
-  activeChild: 'hotel' | 'aranzman' = 'aranzman';
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -88,12 +84,6 @@ export class TuristickaAgencijaComponent implements OnInit, AfterViewInit {
 
   public selectRow(row: TuristickaAgencija): void {
     this.parentSelectedTuristickaAgencija = row;
-
-    this.activeChild = 'aranzman';
-  }
-
-  public setActiveChild(child: 'hotel' | 'aranzman'): void {
-    this.activeChild = child;
   }
 
   public openDialog(

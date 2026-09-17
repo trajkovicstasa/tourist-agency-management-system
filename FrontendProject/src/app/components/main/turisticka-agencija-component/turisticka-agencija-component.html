@@ -60,15 +60,8 @@
 
 <div class="selected-info" *ngIf="parentSelectedTuristickaAgencija as selectedAgencija">
   <p>Izabrana turisticka agencija: {{ selectedAgencija.naziv }}</p>
-  <button mat-button type="button" (click)="setActiveChild('aranzman')">Aranzmani</button>
-  <button mat-button type="button" (click)="setActiveChild('hotel')">Hoteli</button>
 </div>
 
-<app-hotel-component
-  *ngIf="activeChild === 'hotel'"
-></app-hotel-component>
-
 <app-aranzman-component
-  *ngIf="activeChild === 'aranzman'"
   [childSelectedTuristickaAgencija]="parentSelectedTuristickaAgencija"
 ></app-aranzman-component>
