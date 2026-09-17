@@ -75,7 +75,7 @@
           name="agencija"
           [(ngModel)]="data.agencija"
           [compareWith]="compare"
-          [disabled]="flag == 3"
+          [disabled]="flag == 3 || lockAgencija"
           required
         >
           @for (agencija of agencije; track agencija.id) {

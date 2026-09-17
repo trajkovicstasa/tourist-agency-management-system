@@ -35,6 +35,7 @@ import { CommonModule } from '@angular/common';
 export class AranzmanDialog {
 
   flag!: number;
+  lockAgencija = false;
 
   hoteli: Hotel[] = [];
   agencije: TuristickaAgencija[] = [];

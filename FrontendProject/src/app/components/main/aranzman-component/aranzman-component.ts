@@ -127,6 +127,8 @@ export class AranzmanComponent implements OnInit, OnChanges, AfterViewInit {
     });
 
     ref.componentInstance.flag = flag;
+    ref.componentInstance.lockAgencija =
+      flag === 1 && !!this.childSelectedTuristickaAgencija;
 
     ref.afterClosed().subscribe((result) => {
       if (result === 1) {
