@@ -152,6 +152,6 @@ Then open the local Angular application in your browser.
 
 ## Academic Context
 
-This project was developed as an individual academic project for the course **Development of Multi-Layer Applications** at the Faculty of Technical Sciences, University of Novi Sad.
+This project was developed as an individual academic project at the **Faculty of Technical Sciences, University of Novi Sad**.
 
-The project demonstrates the development of a full-stack application using an Angular frontend, Spring Boot REST backend, and PostgreSQL relational database.
+The project demonstrates the development of a full-stack application using an **Angular frontend, Spring Boot REST backend, and PostgreSQL relational database**.
