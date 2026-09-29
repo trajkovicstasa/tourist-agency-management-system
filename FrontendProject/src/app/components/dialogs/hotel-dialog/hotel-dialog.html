@@ -1,25 +1,42 @@
-<div class="container">
-  <ng-container *ngIf="flag === 1">
+<div class="container"> 
+  <ng-container *ngIf="flag === 1"> <!-- ng-container je angular kontejner koji se ne prikazuje kao poseban html element -->
+    <!-- *ngIf="flag === 1" znaci prikazi sadrzaj samo kada je flag ==1  -->
+    <!-- u projektu 1 znaci dodavanje -->
+    <!--  -->
     <h3 mat-dialog-title>Adding hotel</h3>
   </ng-container>
   <ng-container *ngIf="flag === 2">
     <h3 mat-dialog-title>Updating hotel: {{ data.naziv }}</h3>
+    <!-- {{ data.naziv }} je interpolacija, angular ubacuje naziv trenutno izabranog hotela -->
+    <!-- mat-dialog-title je Angular Material direktiva koja naslov oznacava kao naslov dijaloga  -->
   </ng-container>
-  <ng-container *ngIf="flag === 3">
+  <ng-container *ngIf="flag === 3"> <!-- prikazuje naslov za brisanje kada je flag == 3 -->
     <h3 mat-dialog-title>Deleting hotel: {{ data.naziv }}</h3>
   </ng-container>
 
   <form class="mat-dialog-content" #formControl="ngForm">
-    <div class="form">
-      <mat-form-field>
-        <input
-          matInput
+    <!-- "mat-dialog-content je Angular Material klasa za sadrzaj dijaloga -->
+    <!-- #formControl="ngForm" pravi lokalnu promenljivu formControl
+     ona predstavlja angular formu i omogucava proveru formControl.valid -->
+    <!--  -->
+    <div class="form"> <!-- grupise jedno polje forme -->
+      <mat-form-field> <!-- kontejner koji daje material izgled polju  -->
+        <input 
+          matInput 
           placeholder="Naziv"
           name="Naziv"
           [disabled]="flag == 3"
           [(ngModel)]="data.naziv"
           required
-        />
+        /><!-- input je polje za unos teksta -->
+        <!-- matInput  primenjuje Angular material izgled  -->
+        <!-- placeholder="Naziv" prikazuje pomocni tekst kad je polje prazno -->
+        <!-- [disabled]="flag == 3" zakljucava polje pri brisanju -->
+        <!-- [(ngModel)]="data.naziv" je dvosmerno povezivanje
+              - prikazuje data.naziv u polju
+              - svaku izmenu korisnika upisuje nazad u data.naziv  -->
+        <!--  required znaci da je polje obavezno  -->
+        <!--  -->
       </mat-form-field>
     </div>
 
@@ -57,13 +74,21 @@
         <mat-select
           name="destinacija"
           [compareWith]="compare"
-          [disabled]="flag == 3"
+          name="destinacija"
           [(ngModel)]="data.destinacija"
           required
         >
-          @for (destinacija of destinacije; track destinacija.id) {
-            <mat-option [value]="destinacija">
-              {{ destinacija.mesto }}
+        <!-- mat-select je padajuca lista   -->
+        <!-- name="destinacija" je naziv polja -->
+        <!-- [compareWith]="compare" govori angularu da poredi objekte destinacije prema comapre funkciji najcessce po idju -->
+        <!-- [(ngModel)]="data.destinacija"
+              - cuva izabranu destinaciju u objektu hotela -->
+        <!--  -->
+          @for (destinacija of destinacije; track destinacija.id) { <!-- prolazi kroz niz destinacija koji je ucitan putem destinacijaservice a i svaku stavku destinacija prati po idju -->
+            <mat-option [value]="destinacija"> 
+              <!-- mat-option je jedna opcija u padajucoj listi -->
+              <!-- [value]="destinacija" kao vrednost cuva ceo objekat destinacije ne samo id -->
+              {{ destinacija.mesto }}  <!-- prikazuje korisniku naziv mesta  -->
             </mat-option>
           }
         </mat-select>
@@ -71,8 +96,8 @@
     </div>
   </form>
 
-  <div class="mat-dialog-actions">
-    <ng-container *ngIf="flag === 1">
+  <div class="mat-dialog-actions">  <!-- kontejner za dugmad na dnu dijaloga -->
+    <ng-container *ngIf="flag === 1">  <!-- dugme postoji kada je flag 1 -->
       <button
         matButton
         type="submit"
@@ -81,6 +106,12 @@
       >
         Save
       </button>
+       <!-- matButton daje materijal stil dugmetu -->
+       <!-- type="submit" oznacava dugme kao akciju forme -->
+        <!-- [disabled]="!formControl.valid" zakljucava dugme dok obavezne forme nisu validne -->
+        <!-- (click)="add()" poziva metodu add iz typescript klase kada se klikne -->
+         <!--  -->
+         <!--  -->
     </ng-container>
     <ng-container *ngIf="flag === 2">
       <button

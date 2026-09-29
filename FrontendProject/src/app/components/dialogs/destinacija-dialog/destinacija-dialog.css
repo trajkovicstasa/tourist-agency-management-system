@@ -1,48 +1,48 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  max-width: 350px;
-  margin: 0 auto;
-  align-items: center;
-  padding: 32px 16px 32px 16px;
-  gap: 16px;
+.container { /*bira html element gde je class container */
+  display: flex; /*flexbox odredjuje raspored*/
+  flex-direction: column;/*elementi se rasporedjuju jedan ispod drugog u kolonu9*/
+  max-width: 350px;/*sme da zauzme 350px kontejnera*/
+  margin: 0 auto; /*margina gore i dole ne postoji a levo i desno automatski*/
+  align-items: center;/*centrira elemente vertikalno*/
+  padding: 32px 16px 32px 16px; /*razmak izmedju el gore dole levo desno*/
+  gap: 16px;/*toliki je razmak izmedju elemenata*/
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+form {/*bira html element <form>*/
+  display: flex;/*flexbox rasporedjuje polja forme*/
+  flex-direction: column;/*polja se redjaju jedan ispod drugog vertikalno*/
+  gap: 16px;/*razmak izmedju polja je toliki*/
 }
 
-h3 {
-  text-align: center;
-  text-wrap: pretty;
+h3 {/*bira sve h3 naslove6]*/
+  text-align: center;/*centrira tekst*/
+  text-wrap: pretty;/*ako je neki tekst predugacak lepo ga prelomi u drugi red*/
 }
 
-.mat-form-field {
+.mat-form-field {/*odnosi se na Angular Material*/
   font-size: 16px;
-  flex-grow: 1;
+  flex-grow: 1;/*dozvoljava polju da zauzme slobodan prostor unutar flexbox rasporeda*/
 }
 
-.mat-dialog-actions {
-  display: flex;
-  width: 90%;
-  justify-content: center;
-  gap: 12px;
+.mat-dialog-actions {/*bira dugmad u okviru akcije dijaloga to su save i cancel*/
+  display: flex;/*flexbox odredjuje raspored dugmadi*/
+  width: 90%;/*sme da zauzme toliko posto sirine kontejnera*/
+  justify-content: center;/*centrira dugmad horizontalno*/
+  gap: 12px;/*toliki razmak izmedju dugmadi*/
 }
 
-.mat-dialog-actions button {
-  padding: 12px;
+.mat-dialog-actions button {/*odnosi se na <button> dugmad u okviru akcije dijaloga*/
+  padding: 12px;/*toliki razmak izmedju dugmadi*/
   font-size: 16px;
   color: #fff;
   border: none;
   border-radius: 6px;
 }
 
-.mat-dialog-actions button:first-child {
+.mat-dialog-actions button:first-child {/*odnosi se na save update ili delete*/
   background-color: rgb(72, 235, 72);
 }
 
-.mat-dialog-actions button:last-child {
+.mat-dialog-actions button:last-child {/*odnosi se na cancel*/
   background-color: rgb(217, 87, 87);
 }

@@ -1,50 +1,55 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  max-width: 350px;
-  max-height: 85vh;
-  margin: 0 auto;
-  align-items: center;
-  padding: 24px 16px;
-  gap: 16px;
+.container { 
+  display: flex; /* elementi unutar kontejnera se rasporedjuju pomocu flexboxa*/
+  flex-direction: column; /*unutrasnji elementi se redjaju jedno ispod drugog vertikalno odnosno u kolonu*/
+  max-width: 350px;/*dijalog ne moze biti siri od 350 piksela*/
+  max-height: 85vh; /*dijalog moze zauzeti najvise 85% visine ekrana, a vh znaci viewport height*/
+  margin: 0 auto; /*gore i dole nema spoljne margine, a levo i desno ga auto centrira ako postoji slobodan prostor*/
+  align-items: center; /*elementi se po horizontalnoj osi poravnavaju na sredinu*/
+  padding: 24px 16px; /*unutrasnji razmak po 25px gore i dole i po 16  levo i desno*/
+  gap: 16px; /*razmak izmedju direktnih elemenata unutar kontejnera je 16px*/
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-  overflow-y: auto;
-  padding: 0 4px;
+/*
+- bira html element koji ima class container
+
+*/
+
+form { /*bira HTML element <form>*/
+  display: flex; /*koristi flexbox za raspored elemenata forme*/
+  flex-direction: column;/*elementi se rasporedjuju vertikalno jedan ispod drugog u kolonu*/
+  gap: 16px;/*razmak izmedju direktnih elemenata je 16px5*/
+  width: 100%;/*forma zauzima celu raspolozivu sirinu kontejnera*/
+  overflow-y: auto; /*ako je forma previsoka automatski se javlja vertikalni skrol*/
+  padding: 0 4px;/*nema unutrasnjeg razmaka gore i dole a levo i desno ima po 4px*/
 }
 
-h3 {
-  text-align: center;
-  text-wrap: pretty;
+h3 {/*bira sve h3 naslove*/
+  text-align: center;/*centrira tekst naslova*/
+  text-wrap: pretty;/*preglednije prelomi duzi tekst ako ne staje u jedan red*/
 }
 
-.mat-form-field {
+.mat-form-field {/*bira elemente Angular Materia; forme koji imaju ovu klasu*/
   font-size: 16px;
-  flex-grow: 1;
+  flex-grow: 1;/*dozvoljava polju da zauzme slobodan prostor unutar flexbox rasporeda*/
 }
 
-.mat-dialog-actions {
-  display: flex;
-  flex-shrink: 0;
-  width: 90%;
-  justify-content: center;
-  gap: 12px;
+.mat-dialog-actions {/*deo dijalog u kom su dugmad save i cancel*/
+  display: flex;/*dugmad se rasporedjuje flexboxom*/
+  flex-shrink: 0;/*sprecava da se taj deo smanjuje ako dijalog nema dovoljno prostora*/
+  width: 90%;/*toliko posto sirine dijaloga*/
+  justify-content: center;/*centrira dugmad horizontalno5*/
+  gap: 12px;/*razmak izmedju dugmadi je 12px*/
 }
 
-.mat-dialog-actions button {
-  padding: 12px;
+.mat-dialog-actions button {/*bira svako <button> dugme koje se nalazi unutar dela akcije dijaloga*/
+  padding: 12px;/*pravi unutrasnji razmak u dugmetu*/
   font-size: 16px;
   color: #fff;
   border: none;
   border-radius: 6px;
 }
 
-.mat-dialog-actions button:first-child {
+.mat-dialog-actions button:first-child {/*bira prvo dugme u akciji dijaloga tj save update ili delete*/
   background-color: rgb(72, 235, 72);
 }
 

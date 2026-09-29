@@ -35,7 +35,7 @@ export class HotelComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  @Input()
+  @Input() // Hotel je dete Destinacije
   childSelectedDestinacija?: Destinacija;
 
   

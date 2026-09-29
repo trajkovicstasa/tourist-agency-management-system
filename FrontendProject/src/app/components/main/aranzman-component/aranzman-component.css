@@ -2,7 +2,7 @@ table {
   width: 100%;
 }
 
-mat-toolbar {
+mat-toolbar { /*traka na vrhu tabele sa naslovom aranzman*/
   justify-content: center;
 }
 

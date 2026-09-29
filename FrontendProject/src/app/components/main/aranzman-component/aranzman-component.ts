@@ -16,19 +16,22 @@ import { DatePipe } from '@angular/common';
   selector: 'app-aranzman-component',
   standalone: true,
   imports: [
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatIconModule,
+    MatTableModule, // omogucava material tabelu
+    MatSortModule, // omogucava sortiranje tabela po kolonama
+    MatPaginatorModule, 
+    MatIconModule, // omogucava ikonice za add update i delete
     MatToolbarModule,
-    MatDialogModule,
-    DatePipe
+    MatDialogModule, // omogucava otvaranje material dijaloga
+    DatePipe //omogucava formatiranje datuma u htmlu
   ],
   templateUrl: './aranzman-component.html',
   styleUrl: './aranzman-component.css',
 })
 
 export class AranzmanComponent implements OnInit, OnChanges, AfterViewInit {
+  // onInit - znaci da koristi ngOnInit
+  // onChanges - znaci da reaguje na promene podataka dobijenih preko @Input
+  // AfterViewInit - znaci da koristi ngAfterViewInit() koji se izvrsava nakon sto se ucita HTML prikaz komponente
 
   displayedColumns = [
     'id',
@@ -38,17 +41,20 @@ export class AranzmanComponent implements OnInit, OnChanges, AfterViewInit {
     'hotel',
     'agencija',
     'actions'
-  ];
+  ]; // niz koji odredjuje koje kolone tabela prikazuje i kojim redom
+  // nazivi moraju biti isti kao matColumnDef u HTMLU
+  // actions kolona sa dugmadima za dodavanje izmenu i brisanje
 
   dataSource = new MatTableDataSource<Aranzman>([]);
 
-  @Input()
+  @Input()// dozvoljava roditeljskoj komponenti da prosledi podatak ovoj komponenti
   childSelectedDestinacija?: Destinacija;
 
   @Input()
   childSelectedTuristickaAgencija?: TuristickaAgencija;
 
   @ViewChild(MatSort) sort!: MatSort;
+  //@vIEW
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(

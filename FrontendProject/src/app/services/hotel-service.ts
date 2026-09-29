@@ -5,8 +5,9 @@ import { Hotel } from '../models/hotel';
 
 
 
-@Injectable({
-  providedIn: 'root',
+@Injectable({ // kaze Angularu da je klasa ispod servis kojim moze da upravlja Dependency Injection sistem
+  // @ oznacava dekorator - Angularu daje dodatne informacije o klasi
+  providedIn: 'root', // znaci ovaj servis je dostupan na nivou cele apl
 })
 export class HotelService {
   constructor(private httpClient: HttpClient){ }
